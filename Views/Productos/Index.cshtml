@@ -1,0 +1,116 @@
+﻿@model IEnumerable<DS_System.Models.Productos>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+
+</head>
+<body>
+
+    <section class="vh-100" style="background-color: #CFD8DC">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col col-xl-12">
+                    <div class="card" style="border-radius: 1rem;">
+                        <p>
+                            <button type="button" class="btn btn-outline-primary" onclick="location.href='@Url.Action("Create")'">Crear Nuevo</button>
+                        </p>
+                        <form class="d-flex">
+                            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form>
+                        <table id="dtArtiulo" class="table table-striped" style="width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Producto
+                                    </th>
+                                    <th>
+                                        Descripcion
+                                    </th>
+                                    <th>
+                                        Stock
+                                    </th>
+                                    <th>
+                                        Precio Compra
+                                    </th>
+                                    <th>
+                                        Precio Venta
+                                    </th>
+                                    <th>
+                                        Caducidad
+                                    </th>
+                                    <th>
+                                        Clasificacion
+                                    </th>
+                                    <th>
+                                        Proveedor
+                                    </th>
+                                    <th>
+                                        Acciones
+                                    </th>
+                                </tr>
+                            </thead>
+
+                            @foreach (var item in Model)
+                            {
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.NommbreProduc)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Descripcion)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Stock)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.PrecioCom)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.PrecioVen)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Caducidad)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Clasificacion.Descripcion)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Proveedores.NombreContacto)
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-outline-success" onclick="location.href='@Url.Action("Edit", new { id = item.CDBarras })'">
+                                                <i class="bi bi-pencil-square"></i>
+                                            </button>
+                                            <button class="btn btn-outline-danger" onclick="location.href='@Url.Action("Delete", new { id = item.CDBarras })'">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            }
+
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+</body>
+</html>
